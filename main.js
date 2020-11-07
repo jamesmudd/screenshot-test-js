@@ -28,8 +28,17 @@ win.on('destroy', Gtk.mainQuit);
 win.setDefaultSize(200, 80);
 // win.add(new Gtk.Label({label: 'Hello Gtk+'}));
 win.add(new Gtk.Button({label: 'Hello Gtk+'}).on('clicked', () => {
+
+    const rootWindow = Gdk.getDefaultRootWindow()
+    let height = rootWindow.getHeight();
+    let width = rootWindow.getWidth();
+
+
+    let pixBuf = Gdk.pixbufGetFromWindow(rootWindow, 0, 0, width, height);
+    pixBuf.savev('snap.png', 'png', [], [])
+
     console.log("hello")
-    console.log(Gtk.gtk.screen.availHeight)
-    pixBuf = new GdkPixBuf.Pixbuf("hello")
+
+
 }));
 win.showAll();
